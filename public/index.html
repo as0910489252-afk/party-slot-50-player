@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#10152b">
+  <title>尾牙王者｜50人十組拉霸大對決</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <p class="eyebrow">ANNUAL PARTY GAME</p>
+      <h1>🎰 50 人十組拉霸大對決</h1>
+      <p>最多 50 人・10 組・每組 5 人・每人 3 次</p>
+      <div class="connection"><span id="connectionDot" class="dot"></span><span id="connectionText">正在連線…</span></div>
+    </header>
+
+    <section id="entryPanel" class="panel">
+      <h2>加入遊戲</h2>
+      <label for="playerName">玩家暱稱</label>
+      <input id="playerName" maxlength="20" placeholder="例如：小明" autocomplete="nickname">
+      <label for="teamSelect">選擇組別（每組最多 5 人）</label>
+      <select id="teamSelect">
+        <option value="1">第 1 組</option><option value="2">第 2 組</option><option value="3">第 3 組</option><option value="4">第 4 組</option><option value="5">第 5 組</option><option value="6">第 6 組</option><option value="7">第 7 組</option><option value="8">第 8 組</option><option value="9">第 9 組</option><option value="10">第 10 組</option>
+      </select>
+      <button id="createBtn" class="primary">建立新房間</button>
+      <div class="joinrow">
+        <input id="roomCodeInput" maxlength="6" placeholder="輸入 6 碼房間碼" autocapitalize="characters">
+        <button id="joinBtn">加入房間</button>
+      </div>
+      <p class="hint">也可以掃描主持人分享的 QR Code 加入。每組滿 5 人後，請選擇其他組別。</p>
+    </section>
+
+    <section id="gamePanel" class="hidden">
+      <div class="panel room-head">
+        <div><span class="eyebrow">ROOM CODE</span><div id="roomCode" class="room-code">------</div></div>
+        <button id="copyLinkBtn" class="secondary">複製加入連結</button>
+      </div>
+      <div class="panel qr-panel"><div><h2>邀請玩家</h2><p>掃描 QR Code 或分享房間碼</p><p id="roomLink" class="small-link"></p></div><img id="qrImage" alt="加入遊戲 QR Code" width="140" height="140"></div>
+      <div class="panel me-panel"><div><div class="muted">你是</div><strong id="myName">—</strong><span id="myTeam" class="team-pill">—</span></div><div><div class="muted">剩餘拉霸</div><strong id="remainingCount">3 次</strong></div></div>
+      <div class="panel slot-panel">
+        <h2>🎰 我的拉霸</h2>
+        <div id="reels" class="reels"><span>❔</span><span>❔</span><span>❔</span></div>
+        <p id="spinMessage" class="spin-message">等待主持人開始遊戲</p>
+        <button id="spinBtn" class="primary" disabled>拉霸！</button>
+        <div class="actions"><button id="startBtn" class="secondary hidden">開始遊戲（主持人）</button><button id="resetBtn" class="secondary hidden">重設遊戲（主持人）</button></div>
+      </div>
+      <div class="panel"><h2>🏆 十組即時排行榜</h2><p id="playerCount" class="muted">目前 0 / 50 人</p><div id="teamBoard" class="team-board"></div></div>
+      <div class="panel"><h2>👥 玩家列表</h2><div id="playerList" class="player-list"></div></div>
+      <button id="leaveBtn" class="text-button">離開此房間</button>
+    </section>
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+    <footer>遊戲房間資料暫存在伺服器記憶體；Render 重新啟動後，房間可能會清空。</footer>
+  </main>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/app.js" defer></script>
+</body>
+</html>

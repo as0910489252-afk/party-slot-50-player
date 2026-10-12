@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: party-slot-50-player
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
